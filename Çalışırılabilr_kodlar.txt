@@ -1,0 +1,366 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include<conio.h>
+//200201059 -Nurgul Ayten
+//200201020-Begum Erva Sahin
+typedef struct student{
+    int rno;
+    int lescode;
+    struct subject{
+        int mark;
+    }sub[2];
+}student;
+void indexdosyasiolustur();
+void kayitgirisi();
+void kayitekle();
+void kayitbul();
+void kayitguncelle();
+void kayitsil();
+void veridosyasigoster();
+void indexdosyasigoster();
+void indexdosyasinisil();
+void kayitsirala();
+int main(){
+    int ch;
+    kayitgirisi();
+
+    do{
+        printf("\n1.Kayit Ekle");
+        printf("\n2.Veri Dosyasini Goruntule");
+        printf("\n3.Index Dosyasini Goruntule");
+        printf("\n4.Kayit Bul");
+        printf("\n5.Kayit Guncelle");
+        printf("\n6.Kayit Sil");
+        printf("\n7.Index Dosyasini Sil");
+        printf("\n8.kayit sirala");
+        printf("\n0.Cikis");
+        printf("\nSeciminizi yapiniz.");
+        scanf("%d",&ch);
+        switch(ch){
+        case 1:
+                kayitekle();
+            break;
+        case 2:
+                veridosyasigoster();
+            break;
+        case 3:
+                indexdosyasigoster();
+        break;
+        case 4:
+                kayitbul();
+        break;
+        case 5:
+                kayitguncelle();
+        break;
+        case 6:
+                kayitsil();
+        break;
+        case 7:
+                indexdosyasinisil();
+        break;
+        case 8:
+                kayitsirala();
+        break;
+        case 0:
+                printf("\n\nBasariyla Cikis Yaptiniz..\n\n");
+        }
+        }while(ch!=0);
+
+    return 0;
+}
+void kayitgirisi(){
+    FILE *fp2,*fp;
+    student *s;
+    int i;
+    fp2=fopen("binaryfile.bin","w+b");
+    fp=fopen("mystudents1.txt","w+");
+    s= (struct student*)calloc(400,sizeof(student));
+    s[0].rno=21; s[0].lescode=101; s[0].sub[0].mark=100; s[0].sub[1].mark=90;
+    s[1].rno=98; s[1].lescode=101; s[1].sub[0].mark=50; s[1].sub[1].mark=80;
+    s[2].rno=55; s[2].lescode=101; s[2].sub[0].mark=25; s[2].sub[1].mark=85;
+    s[3].rno=96; s[3].lescode=101; s[3].sub[0].mark=47; s[3].sub[1].mark=45;
+    s[4].rno=14; s[4].lescode=101; s[4].sub[0].mark=88; s[4].sub[1].mark=85;
+    s[5].rno=56; s[5].lescode=101; s[5].sub[0].mark=64; s[5].sub[1].mark=95;
+    s[6].rno=13; s[6].lescode=101; s[6].sub[0].mark=78; s[6].sub[1].mark=66;
+    s[7].rno=25; s[7].lescode=101; s[7].sub[0].mark=49; s[7].sub[1].mark=42;
+    s[8].rno=51; s[8].lescode=101; s[8].sub[0].mark=79; s[8].sub[1].mark=95;
+    s[9].rno=74; s[9].lescode=101; s[9].sub[0].mark=78; s[9].sub[1].mark=23;
+    s[10].rno=50; s[10].lescode=101; s[10].sub[0].mark=77; s[10].sub[1].mark=85;
+    s[11].rno=52; s[11].lescode=101; s[11].sub[0].mark=47; s[11].sub[1].mark=59;
+    s[12].rno=73; s[12].lescode=101; s[12].sub[0].mark=94; s[12].sub[1].mark=75;
+    s[13].rno=28; s[13].lescode=101; s[13].sub[0].mark=90; s[13].sub[1].mark=100;
+    s[14].rno=86; s[14].lescode=101; s[14].sub[0].mark=92; s[14].sub[1].mark=78;
+    s[15].rno=68; s[15].lescode=101; s[15].sub[0].mark=87; s[15].sub[1].mark=56;
+    s[16].rno=89; s[16].lescode=101; s[16].sub[0].mark=72; s[16].sub[1].mark=69;
+    s[17].rno=77; s[17].lescode=101; s[17].sub[0].mark=88; s[17].sub[1].mark=90;
+    s[18].rno=63; s[18].lescode=101; s[18].sub[0].mark=50; s[18].sub[1].mark=50;
+    s[19].rno=91; s[19].lescode=101; s[19].sub[0].mark=97; s[19].sub[1].mark=91;
+    s[20].rno=83; s[20].lescode=101; s[20].sub[0].mark=93; s[20].sub[1].mark=82;
+    s[21].rno=35; s[21].lescode=101; s[21].sub[0].mark=78; s[21].sub[1].mark=95;
+    s[22].rno=76; s[22].lescode=101; s[22].sub[0].mark=77; s[22].sub[1].mark=85;
+    s[23].rno=90; s[23].lescode=101; s[23].sub[0].mark=45; s[23].sub[1].mark=33;
+    s[24].rno=16; s[24].lescode=101; s[24].sub[0].mark=40; s[24].sub[1].mark=60;
+    s[25].rno=93; s[25].lescode=102; s[25].sub[0].mark=100; s[25].sub[1].mark=40;
+    s[26].rno=84; s[26].lescode=102; s[26].sub[0].mark=57; s[26].sub[1].mark=45;
+    s[27].rno=32; s[27].lescode=102; s[27].sub[0].mark=42; s[27].sub[1].mark=62;
+    s[28].rno=58; s[28].lescode=102; s[28].sub[0].mark=45; s[28].sub[1].mark=72;
+    s[29].rno=10; s[29].lescode=102; s[29].sub[0].mark=55; s[29].sub[1].mark=93;
+    s[30].rno=75; s[30].lescode=102; s[30].sub[0].mark=65; s[30].sub[1].mark=62;
+    s[31].rno=11; s[31].lescode=102; s[31].sub[0].mark=85; s[31].sub[1].mark=96;
+    s[32].rno=22; s[32].lescode=102; s[32].sub[0].mark=44; s[32].sub[1].mark=66;
+    s[33].rno=81; s[33].lescode=102; s[33].sub[0].mark=97; s[33].sub[1].mark=85;
+    s[34].rno=12; s[34].lescode=102; s[34].sub[0].mark=20; s[34].sub[1].mark=45;
+    s[35].rno=92; s[35].lescode=102; s[35].sub[0].mark=23; s[35].sub[1].mark=35;
+    s[36].rno=24; s[36].lescode=102; s[36].sub[0].mark=46; s[36].sub[1].mark=75;
+    s[37].rno=85; s[37].lescode=102; s[37].sub[0].mark=53; s[37].sub[1].mark=55;
+    s[38].rno=82; s[38].lescode=102; s[38].sub[0].mark=80; s[38].sub[1].mark=78;
+    s[39].rno=61; s[39].lescode=102; s[39].sub[0].mark=30; s[39].sub[1].mark=50;
+    s[40].rno=36; s[40].lescode=102; s[40].sub[0].mark=48; s[40].sub[1].mark=76;
+    s[41].rno=29; s[41].lescode=102; s[41].sub[0].mark=42; s[41].sub[1].mark=52;
+    s[42].rno=30; s[42].lescode=102; s[42].sub[0].mark=55; s[42].sub[1].mark=56;
+    s[43].rno=99; s[43].lescode=102; s[43].sub[0].mark=98; s[43].sub[1].mark=62;
+    s[44].rno=78; s[44].lescode=102; s[44].sub[0].mark=61; s[44].sub[1].mark=99;
+    s[45].rno=52; s[45].lescode=102; s[45].sub[0].mark=34; s[45].sub[1].mark=87;
+    s[46].rno=31; s[46].lescode=102; s[46].sub[0].mark=90; s[46].sub[1].mark=90;
+    s[47].rno=45; s[47].lescode=102; s[47].sub[0].mark=48; s[47].sub[1].mark=90;
+    s[48].rno=41; s[48].lescode=102; s[48].sub[0].mark=100; s[48].sub[1].mark=20;
+    s[49].rno=19; s[49].lescode=102; s[49].sub[0].mark=45; s[49].sub[1].mark=50;
+
+    for(i=0;i<50;i++){
+
+    fprintf(fp2,"%d %d\t",s[i].rno,s[i].lescode);
+    fprintf(fp,"%-5d%-5d\t",s[i].rno,s[i].lescode);
+    fflush(stdin);
+    for(int j=0;j<2;j++){
+        fprintf(fp2,"%d ",s[i].sub[j].mark);
+        fprintf(fp,"%d ",s[i].sub[j].mark);
+    }
+   fprintf(fp,"\n");
+   //printf("%-5d %-5d %5d %5d\n",s[i].rno,s[i].lescode,s[i].sub[0].mark,s[i].sub[1].mark);
+    }
+    fclose(fp);
+    fclose(fp2);
+}
+void kayitekle(){
+        student *s;
+        FILE *fp,*fp2;
+        int n,i,j;
+
+        printf("Ekleyeceginiz ogrenci sayisi nedir?");
+        scanf("%d",&n);
+        s = (student*)calloc(n,sizeof(student));
+        fp2= fopen("binaryfile.bin","ab");
+        fp= fopen("mystudents1.txt","a");
+
+        for(i=0;i<n;i++){
+            fflush(stdin);
+            printf("Ogrenci numarasi giriniz.");
+            scanf("%d",&s[i].rno);
+            printf("Ders kodu giriniz.");
+            scanf("%d",&s[i].lescode);
+            fprintf(fp2,"%d %d\t",s[i].rno,s[i].lescode);
+            fprintf(fp,"%d %d\t",s[i].rno,s[i].lescode);
+            for(j=0;j<2;j++){
+                printf("%d. notu giriniz.",j+1);
+                scanf("%d",&s[i].sub[j].mark);
+                fprintf(fp2,"%d\t",s[i].sub[j].mark);
+                fprintf(fp,"%d\t",s[i].sub[j].mark);
+               }
+        }
+        fclose(fp);
+        fclose(fp2);
+}
+void kayitbul(){
+    int found=0;
+    student s1;
+    FILE *fp2;
+    int rno;
+
+    fp2=fopen("binaryfile.bin","rb");
+    printf("Aramak istediginiz ogrenci numarasini giriniz.");
+    scanf("%d",&rno);
+    while(!feof(fp2)){
+        fscanf(fp2,"%d%d%d%d",&s1.rno,&s1.lescode,&s1.sub[0].mark,&s1.sub[1].mark);
+        if(s1.rno == rno){
+            found = 1;
+            printf("\n%d\t%d\t",s1.rno,s1.lescode);
+            printf("%4d%4d",s1.sub[0].mark,s1.sub[1].mark);
+
+        }
+    }
+     if(found==0)
+        printf("\nBulunamadi...\n");
+   fclose(fp2);
+}
+void kayitguncelle(){
+    int  j, found=0;
+    student s1;
+    FILE *fp2, *fp1,*fp;
+    int rno;
+    printf("Guncellemek istediginiz ogrenci numarasini giriniz.");
+    scanf("%d",&rno);
+    fp2= fopen("binaryfile.bin","r+b");
+    fp1 = fopen("temp.bin","w+b");
+    while(!feof(fp2)){
+         fscanf(fp2,"%d %d",&s1.rno,&s1.lescode);
+        if(s1.rno == rno){
+            found = 1;
+            fflush(stdin);
+            fprintf(fp1,"%d %d ",s1.rno,s1.lescode);
+            for(j=0;j<2;j++){
+                printf("%d. yeni notu giriniz.",j+1);
+                scanf("%d",&s1.sub[j].mark);
+                fflush(stdin);
+                fprintf(fp1,"%d ",s1.sub[j].mark);
+            }
+        }
+    }
+    fclose(fp2);
+    fclose(fp1);
+
+
+    if(found==1){
+            fp2= fopen("binaryfile","wb");
+            fp1 = fopen("temp.bin","rb");
+            fp=fopen("mystudents1.txt","w");
+            while(!feof(fp1)){
+                fscanf(fp1,"%d %d %d %d ",&s1.rno,&s1.lescode,&s1.sub[0].mark,&s1.sub[1].mark);
+                fprintf(fp,"%d %d %d %d ",s1.rno,s1.lescode,s1.sub[0].mark,s1.sub[1].mark);
+                fprintf(fp2,"%d %d %d %d ",s1.rno,s1.lescode,s1.sub[0].mark,s1.sub[1].mark);
+            }
+            fclose(fp2);
+            fclose(fp1);
+            fclose(fp);
+         }
+    else
+        printf("\nBulunamadi...\n");
+}
+void kayitsil(){
+    int found=0;
+    student s1;
+    FILE *fp2, *fp1,*fp;
+    int rno;
+    printf("Silmek istediginiz ogrenci numarasini giriniz.");
+    scanf("%d",&rno);
+
+    fp2 = fopen("binaryfile.bin","rb");
+    fp1 = fopen("temp.bin","wb");
+    while(!feof(fp2)){
+        fscanf(fp2,"%d %d %d %d ",&s1.rno,&s1.lescode,&s1.sub[0].mark,&s1.sub[1].mark);
+        if(s1.rno==rno){
+            found = 1;
+            fprintf(fp1," ");
+        }
+        else
+             fprintf(fp1," %d %d %d %d ",s1.rno,s1.lescode,s1.sub[0].mark,s1.sub[1].mark);
+         }
+        fclose(fp2);
+        fclose(fp1);
+    if(found==1){
+            fp2= fopen("binaryfile.bin","wb");
+            fp1 = fopen("temp.bin","rb");
+            fp=fopen("mystudents1.txt","w+");
+           while(!feof(fp1)){
+                fscanf(fp1," %d %d %d %d ",&s1.rno,&s1.lescode,&s1.sub[0].mark,&s1.sub[1].mark);
+                fprintf(fp2," %d %d %d %d ",s1.rno,s1.lescode,s1.sub[0].mark,s1.sub[1].mark);
+                fprintf(fp," %d %d %d %d ",s1.rno,s1.lescode,s1.sub[0].mark,s1.sub[1].mark);
+           }
+             fclose(fp2);
+             fclose(fp1);
+             fclose(fp);
+         }
+    else{
+        printf("%d numarali ogrenci bulunamadi.\n",rno);
+    }
+
+}
+void veridosyasigoster(){
+        student s1;
+        FILE *fp2;
+        int j;
+        fp2=fopen("binaryfile.bin","rb");
+        printf("no:  Dersk:  1.Not:  2.Not\n\n");
+        while(!feof(fp2)){
+            fscanf(fp2,"%d%d",&s1.rno,&s1.lescode);
+            printf("\n%-5d%-10d",s1.rno,s1.lescode);
+            for(j=0;j<2;j++){
+                fscanf(fp2,"%d",&s1.sub[j].mark);
+                printf(" %4d",s1.sub[j].mark);
+            }
+        }
+        fclose(fp2);
+}
+void indexdosyasigoster(){
+    student s1;
+    FILE *fp;
+    int j;
+    fflush(stdin);
+    fp=fopen("mystudents1.txt","r");
+    if(fp==NULL){
+        printf("dosya acilamadi.\n");
+    }
+    else{
+           printf("\nno:  Dersk:  1.Not:  2.Not\n\n");
+     while(!feof(fp)){
+            fscanf(fp,"%d%d",&s1.rno,&s1.lescode);
+            printf("\n%-5d%-10d",s1.rno,s1.lescode);
+            for(j=0;j<2;j++){
+                fscanf(fp,"%d",&s1.sub[j].mark);
+                printf("%4d",s1.sub[j].mark);
+            }
+        }
+     }
+      fclose(fp);
+}
+void indexdosyasinisil(){
+    FILE *fp;
+    fp=fopen("mystudents1.txt","w");
+    remove("mystudents1.txt");
+    printf("\nindex dosyasi basariyla silinmistir.");
+    fclose(fp);
+}
+void indexdosyasiolustur(){
+    FILE *fp,*fp2;
+    fp2=fopen("binaryfile.bin","rb");
+    fp=fopen("mystudents1.txt","a+");
+    fclose(fp);
+    fclose(fp2);
+}
+void kayitsirala(){
+        student *s, s1;
+        FILE *fp;
+        fp = fopen("mystudents1.txt","r+");
+        fseek(fp,0,SEEK_END);
+        int n = ftell(fp)/sizeof(student);
+        int i,j;
+        rewind(fp);
+        s = (student*)calloc(n,sizeof(student));
+        for(i=0;i<n;i++){
+             fscanf(fp,"%d%d%d%d",&s[i].rno,&s[i].lescode,&s[i].sub[0].mark,&s[i].sub[1].mark);
+        }
+        fclose(fp);
+        for(i=0;i<n;i++){
+            for(j=i+1;j<n;j++){
+                if(s[i].rno>s[j].rno){
+                    s1 = s[i];
+                    s[i] = s[j];
+                    s[j] = s1;
+                }
+            }
+        }
+       printf("\nno:  Dersk:  1.Not:  2.Not\n\n");
+       for(i=0;i<n;i++){
+            printf("\n%-5d%-5d",s[i].rno,s[i].lescode);
+            for(j=0;j<2;j++){
+                printf("%4d",s[i].sub[j].mark);
+            }
+           }
+          fp=fopen("mystudents1.txt","w");
+          for(i=0;i<n;i++){
+            fprintf(fp,"%d\t%d\t%d\t%d\n",s[i].rno,s[i].lescode,s[i].sub[0].mark,s[i].sub[1].mark);
+          }
+
+          fclose(fp);
+}
+
+
